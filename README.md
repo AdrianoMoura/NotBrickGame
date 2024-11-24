@@ -6,7 +6,7 @@ This is a personal project where I challenge myself to recreate some classic gam
 ---
 
 ## 📸 Demo
-https://adrianomoura.github.io/NotBrickGame/hub/
+[https://adrianomoura.github.io/NotBrickGame/hub/](https://adrianomoura.github.io/NotBrickGame/hub/){:target="_blank"}
 
 ---
 
