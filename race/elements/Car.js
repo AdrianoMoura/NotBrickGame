@@ -20,7 +20,7 @@ class Car {
     /**
      * Constructs a Car instance
      * @param {Object} p5 - p5.js instance
-     * @param {number} x - Initial X position
+     * @param {number} pos - Initial horizontal position
      * @param {number} y - Initial Y position
      */
     constructor(p5, pos, y) {
@@ -51,6 +51,7 @@ class Car {
         }
     }
 
+    // Receive the keyboard input and move the car side to side
     move(dir) {
         if (dir === 1) {
             if (this.pos < 2) {
@@ -64,6 +65,7 @@ class Car {
         }
     }
 
+    // Move the car 1 step down
     moveDown() {
         this.y++;
     }

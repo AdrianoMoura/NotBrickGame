@@ -184,7 +184,10 @@ function sketch(p) {
 
             const linesRemaining = restedBlocks.filter(line => line.includes(0)); // Incomplete lines
 
-            score += linesCompleted.length * 10; // Update score
+            // Calculate the score, making combos multiplies the received score
+            for (let i = 1; i<=linesCompleted.length; i++) {
+                score += i * 10; // Update score
+            }
             
             if (score >= hiScore) {
                 hiScore = score; // Update high score
