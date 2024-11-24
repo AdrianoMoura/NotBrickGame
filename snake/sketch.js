@@ -179,6 +179,8 @@ function sketch(p) {
         isGamePaused = false;
         createSnake();
         score = 0; // Reset score
+        speed = 1;
+        level = 1;
     }
 }
 

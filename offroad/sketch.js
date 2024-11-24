@@ -242,6 +242,8 @@ function sketch(p) {
         frame = 0; // Reset frame counter
         gapArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]; // Reset gap array
         gapSize = gameScreenWidth - level; // Recalculate gap size
+        speed = 1;
+        level = 1;
     }
 }
 

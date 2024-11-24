@@ -230,6 +230,8 @@ function sketch(p) {
         isGamePaused = false;
         score = 0;
         newBlock(); // Spawn a new brick
+        speed = 1;
+        level = 1;
     }
 }
 

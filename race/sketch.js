@@ -212,6 +212,8 @@ function sketch(p) {
         enemyCars.length = 0; // Clear enemy cars
         playerCar.pos = 1; // Reset player position
         score = 0; // Reset score
+        level = 1;
+        speed = 1;
     }
 }
 
