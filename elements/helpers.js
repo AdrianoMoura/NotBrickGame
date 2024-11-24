@@ -21,3 +21,27 @@ export function preventKeyboard() {
         }
     });
 }
+
+export function circularShift(array, direction) {
+    const newArray = [...array]
+    if (direction === 1) {
+        return [newArray.pop(), ...newArray];
+    } else if (direction === -1) {
+        return [...newArray.slice(1), newArray[0]];
+    } else {
+        return newArray;
+    }
+}
+
+export function maxContinuousOccorrence(array, target) {
+    let count = 0;
+    for (let value of array) {
+        if (value === target) {
+            count++
+        } else if (count > 0) {
+            break;
+        }
+    }
+
+    return count;
+}

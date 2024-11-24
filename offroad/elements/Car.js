@@ -2,28 +2,28 @@ import Block from "../../elements/Block.js";
 import { gameScreenHeight, gameScreenWidth } from "../../elements/conf.js";
 import { acceleratedSpeed } from "./conf.js";
 
+// Definitions for various brick types, each represented as a 2D array of 1s and 0s
 // The Car class represents a movable car made of blocks
 class Car {
     p5; // p5.js instance for rendering
     y; // Current Y position of the brick
-
-    pos; // Current position left, middle, right (0,1,2)
+    x; // Current X position
     blocks = [
         [0, 1, 0],
         [1, 1, 1],
         [0, 1, 0],
         [1, 0, 1],
-    ];
+    ]
 
     /**
      * Constructs a Car instance
      * @param {Object} p5 - p5.js instance
-     * @param {number} pos - Initial horizontal position
+     * @param {number} x - Initial x position
      * @param {number} y - Initial Y position
      */
-    constructor(p5, pos, y) {
+    constructor(p5, x, y) {
         this.p5 = p5;
-        this.pos = pos;
+        this.x = x;
         this.y = y;
     }
 
@@ -35,7 +35,7 @@ class Car {
 
         for (let i = 0; i < blocks.length; i++) {
             for (let j = 0; j < blocks[i].length; j++) {
-                const x = this.pos * 3 + j;
+                const x = this.x + j;
                 const y = this.y + i;
 
                 // Draw only active blocks (1s in the array)
@@ -51,21 +51,8 @@ class Car {
 
     // Receive the keyboard input and move the car side to side
     move(dir) {
-        if (dir === 1) {
-            if (this.pos < 2) {
-                this.pos++;
-            }
-        }
-        if (dir === -1) {
-            if (this.pos > 0) {
-                this.pos--;
-            }
-        }
-    }
+        this.x += dir
 
-    // Move the car 1 step down
-    moveDown() {
-        this.y++;
     }
 }
 

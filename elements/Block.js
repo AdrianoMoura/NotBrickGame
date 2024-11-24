@@ -7,6 +7,7 @@ class Block {
     x;  // X-coordinate of the block in the grid
     y;  // Y-coordinate of the block in the grid
     disabled; // Boolean indicating if the block is disabled (e.g., inactive or faded)
+    dimmed; // Boolean indicating if the block is dimmed (e.g., active but lighter)
 
     // Initial offset values for the grid's starting position, considering padding and borders
     startX = padding + gameScreenBorderWeight + gameScreenPadding;
@@ -19,21 +20,25 @@ class Block {
      * @param {number} y - Y-coordinate in the grid
      * @param {boolean} [disabled=false] - Optional flag to mark the block as disabled
      */
-    constructor(p5, x, y, disabled = false) {
+    constructor(p5, x, y, disabled = false, dimmed = false ) {
         this.p5 = p5;
         this.x = x;
         this.y = y;
         this.disabled = disabled;
+        this.dimmed = dimmed;
     }
 
     /**
      * Draws the block on the canvas
-     * @param {number} [xRef=0] - Optional offset for X-axis reference (default: 0)
-     * @param {number} [yRef=0] - Optional offset for Y-axis reference (default: 0)
      */
-    draw(xRef = 0, yRef = 0) {
+    draw() {
         // Set the base color for the block
         const color = this.p5.color(0); // Black color
+
+        // Adjust color transparency if the block is dimm
+        if (this.dimmed) {
+            color.setAlpha(150); // Make the color more transparent
+        }
 
         // Adjust color transparency if the block is disabled
         if (this.disabled) {
@@ -46,8 +51,8 @@ class Block {
         this.p5.noFill(); // No fill color for the outer rectangle
 
         // Calculate the absolute X and Y positions for the block
-        const x = this.startX + (blockSize + blockSpacing) * this.x + (blockSize + blockSpacing) * xRef;
-        const y = this.startY + (blockSize + blockSpacing) * this.y + (blockSize + blockSpacing) * yRef;
+        const x = this.startX + (blockSize + blockSpacing) * this.x;
+        const y = this.startY + (blockSize + blockSpacing) * this.y;
 
         // Draw the outer rectangle representing the block
         this.p5.rect(x, y, blockSize, blockSize);

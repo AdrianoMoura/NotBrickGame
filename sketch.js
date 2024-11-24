@@ -13,8 +13,9 @@ function sketch(p) {
     const gameList = [
         ['NOT TETRIS', '/nottetris'],
         ['RACE', '/race'],
-        ['SNAKE', ''],
+        ['SNAKE', '/snake'],
         ['BREAK OUT', ''],
+        ['OFFROAD', '/offroad'],
     ];
 
     let page = 0;
