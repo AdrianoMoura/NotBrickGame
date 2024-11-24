@@ -106,7 +106,7 @@ function sketch(p) {
         }
 
         if (p.keyCode === p.ESCAPE) {
-            location.href = '/'; // Return to main menu
+            location.href = '../hub'; // Return to menu
         }
     };
 

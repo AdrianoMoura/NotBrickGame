@@ -7,9 +7,9 @@
 export default function preload(p5) {
     // Load the pixel-style font and assign it to a global variable
     // Used for rendering pixelated or retro-style text in the HUD
-    window.pixelFont = p5.loadFont("./assets/fonts/pixel.TTF");
+    window.pixelFont = p5.loadFont(`../assets/fonts/pixel.TTF `);
 
     // Load the LCD-style font and assign it to a global variable
     // Used for rendering text that mimics a digital display
-    window.lcdFont = p5.loadFont("./assets/fonts/lcd.TTF");
+    window.lcdFont = p5.loadFont("../assets/fonts/lcd.TTF");
 }

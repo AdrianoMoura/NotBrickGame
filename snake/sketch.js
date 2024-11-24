@@ -101,7 +101,7 @@ function sketch(p) {
     // Handle key releases
     p.keyReleased = () => {
         if (p.keyCode === p.ESCAPE) {
-            location.href = '/'; // Navigate back to the menu
+            location.href = '../hub'; // Return to menu
         }
     };
 

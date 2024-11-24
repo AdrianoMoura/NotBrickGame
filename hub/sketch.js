@@ -1,7 +1,7 @@
-import { width, height, backgroundColor, gameScreenWidth, gameScreenHeight } from './elements/conf.js';
-import GameHud from './elements/GameHud.js';
-import { preventKeyboard } from './elements/helpers.js';
-import preload from './elements/preload.js';
+import { width, height, backgroundColor, gameScreenWidth, gameScreenHeight } from '../elements/conf.js';
+import GameHud from '../elements/GameHud.js';
+import { preventKeyboard } from '../elements/helpers.js';
+import preload from '../elements/preload.js';
 
 function sketch(p) {
     let gameHud; // Game HUD instance
@@ -119,7 +119,7 @@ function sketch(p) {
         }
 
         if (p.keyCode === p.ENTER && gameList[selectedGame][1]) {
-            location.href = gameList[selectedGame][1]; // Navigate to the selected game's path
+            location.href = `..${gameList[selectedGame][1]}`; // Navigate to the selected game's path
         }
     };
 
