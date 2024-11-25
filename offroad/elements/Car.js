@@ -51,8 +51,9 @@ class Car {
 
     // Receive the keyboard input and move the car side to side
     move(dir) {
-        this.x += dir
-
+        if ((dir < 0 && this.x > 0) || (dir > 0 && this.x + this.blocks[0].length < gameScreenWidth)) {
+            this.x += dir
+        }
     }
 }
 
