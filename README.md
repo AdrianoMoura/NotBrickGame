@@ -47,6 +47,31 @@ Ensure you have:
     live-server
     ```
 
+## 🕹️ How to Play
+Select a game using the arrows and confirm using Enter
+All games can be paused using Space
+When you loses you can press Enter to restart the game
+
+#### Not Tetris
+⬅️ / ➡️: Move blocks horizontally.
+⬇️: Accelerate block falling.
+⏺️ Space: Rotate blocks.
+
+#### Race
+⬅️ / ➡️: Move the Car horizontally.
+⏺️ Space: Accelerate the Car.
+
+#### Snake
+⬅️ / ➡️ / ⬆️ / ⬇️: Move the Snake Around.
+
+#### Break Out (in development)
+⬅️ / ➡️: Move the pad horizontally.
+
+#### OffRoad
+⬅️ / ➡️: Move the Car horizontally.
+⏺️ Space: Accelerate the Car.
+
+
 ## 📂 Project Structure
 The first part (index.html and sketch.js) at the repository root, are the Hub Management, when we can select which game do you wanna play
 Each game is separated in his own folder, with related components
@@ -79,5 +104,4 @@ NotBrickGame/
 │   └── styles.css          # Styles for the Console Recreation
 └── README.md               # Project documentation
 ```
-
 
