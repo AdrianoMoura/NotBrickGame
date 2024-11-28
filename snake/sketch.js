@@ -12,7 +12,7 @@ function sketch(p) {
     let isGamePaused = false; // Flag to track if the game is paused
     let isGameOver = false; // Flag to track if the game is over
 
-    let snake; // The player's car instance
+    let snake; // The player's snake instance
 
     // Game dynamics
     let lastExecutionTime = 0; // Time tracking for screen move interval

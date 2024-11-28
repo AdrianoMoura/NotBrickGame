@@ -14,7 +14,7 @@ function sketch(p) {
         ['NOT TETRIS', '/nottetris'],
         ['RACE', '/race'],
         ['SNAKE', '/snake'],
-        ['BREAK OUT', ''],
+        ['BREAK OUT', '/breakout'],
         ['OFFROAD', '/offroad'],
     ];
 
