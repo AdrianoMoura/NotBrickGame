@@ -19,7 +19,7 @@ This is a personal project where I challenge myself to recreate some classic gam
 
 ## 🛠️ Technologies Used
 - **HTML5**: Structure for the interface.
-- **CSS3**: I challenged myself into recreate the Brick Game asthetic using only CSS, it's passable..
+- **CSS3**: I challenged myself into recreate the Brick Game Case asthetic using only CSS, it's passable..
 - **JavaScript (ES6)**: Game logic, event handling, and state management.
 - **p5.js**: Dynamic rendering and element manipulation.
 
