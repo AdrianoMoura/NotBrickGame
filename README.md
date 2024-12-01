@@ -65,7 +65,7 @@ When you loses you can press Enter to restart the game
 #### Snake
 ⬅️ / ➡️ / ⬆️ / ⬇️: Move the Snake Around.
 
-#### Break Out (in development)
+#### Break Out
 ⬅️ / ➡️: Move the pad horizontally.
 
 #### OffRoad
