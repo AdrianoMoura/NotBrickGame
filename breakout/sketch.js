@@ -12,6 +12,11 @@ const levelShape = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    ],
+    [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
         [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
         [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
         [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
@@ -99,8 +104,6 @@ function sketch(p) {
     p.draw = () => {
         p.background(backgroundColor); // Clear the canvas with the background color
 
-        console.log(pad.direction);
-
         // Update and display the HUD
         gameHud.speed = speed; // Update speed in HUD
         gameHud.level = level; // Update level in HUD
@@ -172,7 +175,12 @@ function sketch(p) {
             }
         }
 
+
         if (count === 0) {
+            passLevel();
+        }
+
+        if (ball.ricochetCount > 10 && count < 3) {
             passLevel();
         }
 
@@ -183,90 +191,49 @@ function sketch(p) {
 
     // Returns the situation around the ball to check a collision
     function checkCollision(ball) {
-        let hitHorizontally = false;
-        let hitVertically = false;
 
-        // Check if hit block horizontally
-        if (activeLevel[ball.y]) {
-            if (activeLevel[ball.y][ball.x + 1] === 1) {
-                activeLevel[ball.y][ball.x + 1] = 0;
-                ball.flipX();
-                increaseScore();
-                hitHorizontally = true;
-            }
+        // Checks for collisions in the primary directions (horizontal and vertical)
+        const primaryDirections = [
+            { dx: 0, dy: -1 }, // Up
+            { dx: 0, dy: 1 },  // Down
+            { dx: -1, dy: 0 }, // Left
+            { dx: 1, dy: 0 }   // Right
+        ];
 
-            if (activeLevel[ball.y][ball.x - 1] === 1) {
-                activeLevel[ball.y][ball.x - 1] = 0;
-                ball.flipX();
-                increaseScore();
-                hitHorizontally = true;
-            }
-        }
+        // Checks for collisions in the diagonals, respecting the ball's movement direction
+        const diagonalDirections = [
+            { dx: -1, dy: -1 }, // Upper-left diagonal
+            { dx: 1, dy: -1 },  // Upper-right diagonal
+            { dx: -1, dy: 1 },  // Lower-left diagonal
+            { dx: 1, dy: 1 }    // Lower-right diagonal
+        ];
 
-        // Check if hit block vertically
-        if (activeLevel[ball.y - 1]) {
-            if (activeLevel[ball.y - 1][ball.x] === 1) {
-                activeLevel[ball.y - 1][ball.x] = 0;
-                ball.flipY();
-                increaseScore();
-                hitVertically = true;
-            }
-        }
+        // Auxiliary function to process a collision in a specific direction
+        function processCollision(dx, dy) {
+            const nx = ball.x + dx; // Next X position
+            const ny = ball.y + dy; // Next Y position
 
-        if (activeLevel[ball.y + 1]) {
-            if (activeLevel[ball.y + 1][ball.x] === 1) {
-                activeLevel[ball.y + 1][ball.x] = 0;
-                ball.flipY();
-                increaseScore();
-                hitVertically = true;
+            // Checks if within bounds and if there is a block at the position
+            if (activeLevel[ny] && activeLevel[ny][nx] === 1) {
+                ball.clearRicochetCount();
+                activeLevel[ny][nx] = 0; // Removes the block
+                increaseScore(); // Updates the score
+                if (dx !== 0) ball.flipX(); // Adjusts X direction
+                if (dy !== 0) ball.flipY(); // Adjusts Y direction
             }
         }
 
-        // Check if hit block at the corner
-        if (hitHorizontally || hitVertically) {
-            return
+        for (const { dx, dy } of primaryDirections) {
+            processCollision(dx, dy)
         }
 
-        //Top left
-        if (activeLevel[ball.y - 1] && ball.direction[0] === -1 && ball.direction[1] === -1) {
-            if (activeLevel[ball.y - 1][ball.x - 1] === 1) {
-                activeLevel[ball.y - 1][ball.x - 1] = 0;
-                ball.flipY();
-                ball.flipX();
-                increaseScore();
-            }
-        }
-
-        // Top right
-        if (activeLevel[ball.y - 1] && ball.direction[0] === 1 && ball.direction[1] === -1) {
-            if (activeLevel[ball.y - 1][ball.x + 1] === 1) {
-                activeLevel[ball.y - 1][ball.x + 1] = 0;
-                ball.flipY();
-                ball.flipX();
-                increaseScore();
-            }
-        }
-
-        // Bottom left
-        if (activeLevel[ball.y + 1] && ball.direction[0] === -1 && ball.direction[1] === 1) {
-            if (activeLevel[ball.y + 1][ball.x - 1] === 1) {
-                activeLevel[ball.y + 1][ball.x - 1] = 0;
-                ball.flipY();
-                ball.flipX();
-                increaseScore();
-            }
-        }
-
-        //Bottom right
-        if (activeLevel[ball.y + 1] && ball.direction[0] === 1 && ball.direction[1] === 1) {
-            if (activeLevel[ball.y + 1][ball.x + 1] === 1) {
-                activeLevel[ball.y + 1][ball.x + 1] = 0;
-                ball.flipY();
-                ball.flipX();
-                increaseScore();
+        for (const { dx, dy } of diagonalDirections) {
+            if (ball.direction[0] === dx && ball.direction[1] === dy) { // Only in the direction of movement
+                processCollision(dx, dy)
             }
         }
     }
+
 
     function createPad() {
         pad = new Pad(p, 3); // Initialize the pad

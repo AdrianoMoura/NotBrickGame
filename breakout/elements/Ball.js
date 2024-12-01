@@ -8,6 +8,7 @@ class Ball {
     x; // Current X position
     y; // Current X position
     direction; // Ball Direction
+    ricochetCount = 0; // Register the ricochet count to prevent soft lock
 
     /**
      * Constructs a Car instance
@@ -42,11 +43,13 @@ class Ball {
             this.x + this.direction[0] > gameScreenWidth - 1
         ) {
             this.flipX();
+            this.ricochetCount++;
         }
 
         if (this.y + this.direction[1] === gameScreenHeight - 1) {
             if (this.x >= pad.x - 1 && this.x < pad.x + pad.padSize + 1) {
                 this.flipY();
+                this.ricochetCount++;
 
                 if (this.x === pad.x - 1 || this.x === pad.x + pad.padSize) {
                     this.flipX();
@@ -64,10 +67,15 @@ class Ball {
 
         if (this.y + this.direction[1] < 0) {
             this.flipY();
+            this.ricochetCount++;
         }
 
         this.x += this.direction[0];
         this.y += this.direction[1];
+    }
+
+    clearRicochetCount() {
+        this.ricochetCount = 0;
     }
 
     flipX() {
