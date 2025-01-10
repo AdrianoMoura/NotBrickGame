@@ -13,7 +13,9 @@ This is a personal project where I challenge myself to recreate some classic gam
 ## ✨ Games
 - 🎲 **NOT TETRIS**: My recreation of the classic Tetris.
 - 🎲 **Race**: My recreation of the blocky Race Game.
-- 🎲 **Breakout**: A Breakout/Arkanoid type of game
+- 🎲 **Snake**: The classic snake game.
+- 🎲 **Breakout**: A Breakout/Arkanoid type of game.
+- 🎲 **OffRoad**: A variation of the Race game.
 
 ---
 
